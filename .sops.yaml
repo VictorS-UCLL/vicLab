@@ -1,0 +1,10 @@
+creation_rules:
+  # Talos cluster secrets: every value is sensitive, encrypt all of it.
+  - path_regex: talos/.*\.sops\.ya?ml$
+    age: age1fhv3syj7tl5mnek5vps5s36fuxh8ve5euxvq3c80xs4fnrzndq3q52jhr2
+
+  # Kubernetes Secrets: encrypt only the payload. kind/metadata stay readable,
+  # so diffs and Argo CD can still tell which Secret changed.
+  - path_regex: kubernetes/.*\.sops\.ya?ml$
+    encrypted_regex: ^(data|stringData)$
+    age: age1fhv3syj7tl5mnek5vps5s36fuxh8ve5euxvq3c80xs4fnrzndq3q52jhr2
