@@ -1,0 +1,23 @@
+# --- Secrets: never committed in plaintext ---
+# age private keys live in ~/.config/sops/age/keys.txt and the password manager, never here
+*.agekey
+keys.txt
+*.dec.yaml
+*.decrypted.*
+
+# Cluster admin credentials (regenerated from encrypted secrets when needed)
+talosconfig
+kubeconfig
+
+# --- OpenTofu ---
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+crash.log
+# .terraform.lock.hcl is NOT ignored: it pins provider versions and must be committed
+
+# --- Editor / OS noise ---
+.vscode/
+.idea/
+.DS_Store

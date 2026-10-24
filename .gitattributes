@@ -1,0 +1,3 @@
+# Repo is edited from Windows and WSL. Force LF so YAML, shell scripts and
+# Talos configs are byte-identical no matter which side wrote them.
+* text=auto eol=lf
