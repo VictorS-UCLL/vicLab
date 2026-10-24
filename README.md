@@ -14,7 +14,7 @@ by hand unless it is committed here the same day.
 
 | Path | Contents | Applied by |
 |---|---|---|
-| `infra/` | Proxmox VMs (OpenTofu) | me — `tofu apply` |
+| `infra/` | Proxmox VMs (Terraform) | me — `terraform apply` |
 | `talos/` | Talos machine config | me — `talosctl apply-config` |
 | `ansible/` | Proxmox host baseline | me — `ansible-playbook` |
 | `kubernetes/bootstrap/` | Argo CD + root application | me, once |
