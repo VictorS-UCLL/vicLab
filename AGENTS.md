@@ -105,8 +105,11 @@ Changing one side of a "must match" pair without the other is a bug.
 ### Repository protection (`protect-main` ruleset)
 Pull request required (0 approvals — single maintainer), linear history, no
 force pushes, no deletion, empty bypass list. Secret scanning and push
-protection are on. Actions default to read-only `GITHUB_TOKEN` permissions;
-workflows request more explicitly.
+protection are on, but they only recognise known token formats (GitHub, cloud
+providers, ...). They will most likely not catch a base64 Talos key or an
+unencrypted Kubernetes Secret, so the checks in section 7 remain mandatory
+until a CI check exists (#5). Actions default to read-only `GITHUB_TOKEN`
+permissions; workflows request more explicitly.
 
 ---
 

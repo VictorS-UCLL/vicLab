@@ -36,12 +36,12 @@ Proxmox VE 9 — HP Pavilion laptop (i7-9750H, 16 GB)
 | Least-privilege Proxmox API token for Terraform | ✅ [runbook](docs/runbooks/proxmox-terraform-token.md) |
 | Talos image (Image Factory schematic) + VM via Terraform | ✅ |
 | Talos secrets (encrypted) + machine config patches | ✅ |
-| Cluster bootstrap | ⏳ #4 |
+| Cluster bootstrap | ⏳ [#4](https://github.com/VictorS-UCLL/vicLab/issues/4) |
 | Argo CD + platform services | planned |
 | Portfolio migration and v1 cutover | planned |
 | Disaster-recovery drill: rebuild from zero, timed and documented | planned |
 
-Known gaps are tracked as issues labelled [`type/debt`](../../issues?q=is%3Aissue+label%3Atype%2Fdebt).
+Known gaps are tracked as issues labelled [`type/debt`](https://github.com/VictorS-UCLL/vicLab/issues?q=is%3Aissue+label%3Atype%2Fdebt).
 
 ## Layout
 
@@ -67,8 +67,11 @@ note. Details for humans and AI agents: [AGENTS.md](AGENTS.md).
 
 ## Security model
 
-- No plaintext secrets in git. SOPS rules live in `.sops.yaml`; GitHub secret
-  scanning with push protection is enabled as a second net.
+- No plaintext secrets in git. SOPS rules live in `.sops.yaml`. GitHub secret
+  scanning with push protection is on, but it only recognises known token
+  formats, so it is not a reliable net for SOPS mistakes. An automated check
+  is planned ([#5](https://github.com/VictorS-UCLL/vicLab/issues/5)); until
+  then the manual checks in AGENTS.md are mandatory.
 - Terraform reaches Proxmox through a dedicated `terraform@pve` token with a
   minimal role, never as root.
 - Nodes hold no hand-placed credentials and have no SSH: Talos is managed only
@@ -79,4 +82,4 @@ note. Details for humans and AI agents: [AGENTS.md](AGENTS.md).
 ## Tooling
 
 CLI versions are pinned in `mise.toml`. On a fresh machine: `mise install`.
-Work happens from WSL (Ubuntu) on Windows; see [AGENTS.md](AGENTS.md#environment).
+Work happens from WSL (Ubuntu) on Windows; see [AGENTS.md](AGENTS.md#2-environment).
