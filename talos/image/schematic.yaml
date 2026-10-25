@@ -1,0 +1,6 @@
+# Talos Image Factory schematic: which system extensions are baked into the image.
+# The schematic ID is a hash of this file's content: same file, same ID, same image.
+customization:
+  systemExtensions:
+    officialExtensions:
+      - siderolabs/qemu-guest-agent   # lets Proxmox see the IP and shut the VM down cleanly
