@@ -15,6 +15,7 @@ kubeconfig
 *.tfstate.*
 *.tfvars
 crash.log
+*.tfplan
 # .terraform.lock.hcl is NOT ignored: it pins provider versions and must be committed
 
 # --- Editor / OS noise ---
