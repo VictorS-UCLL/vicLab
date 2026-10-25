@@ -22,12 +22,17 @@ Run Kubernetes on Talos Linux: one node, as a Proxmox VM created by Terraform.
 Good:
 - The node is fully described by a machine config generated from git
   (SOPS-encrypted secrets plus patches). No SSH, no shell, nothing to drift.
-- Upstream Kubernetes components and etcd: closer to what the CKA tests than
-  K3s's single binary with SQLite.
+  K3s plus Ansible could also be reproducible, but there drift is prevented by
+  discipline; on Talos it is impossible, because there is no shell to drift through.
+- Runs etcd and separate control-plane components (API server, scheduler,
+  controller manager), unlike K3s's single binary with SQLite. It is not
+  kubeadm, though: CKA practice still needs a separate kubeadm cluster.
 - Immutable OS; upgrades are an API call (`talosctl upgrade`), not apt.
 
 Bad:
 - No shell to debug with: everything goes through talosctl and kubectl.
+- Linux administration moves off the cluster: hands-on Linux work happens only
+  on the Proxmox host (managed with Ansible).
 - One node means no high availability. Control plane and workloads share one VM
   on one laptop.
 - Talos-specific traps: extensions must be in the installer image, not only the
