@@ -1,0 +1,14 @@
+# Applied to every node.
+machine:
+  install:
+    disk: /dev/sda
+    # Installer built from talos/image/schematic.yaml, so the qemu-guest-agent
+    # extension survives the install to disk. The default installer would drop it.
+    # Keep the version in sync with infra/variables.tf (talos_version).
+    image: factory.talos.dev/installer/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515:v1.14.4
+  kubelet:
+    nodeIP:
+      # IPv6 does not route on this LAN (verified 2026-10-24). Never let the
+      # kubelet advertise an IPv6 address as the node IP.
+      validSubnets:
+        - 192.168.0.0/24

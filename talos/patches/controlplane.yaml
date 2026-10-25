@@ -1,0 +1,4 @@
+# Applied to control-plane nodes only.
+cluster:
+  # Single-node cluster: the control plane must also run workloads.
+  allowSchedulingOnControlPlanes: true
